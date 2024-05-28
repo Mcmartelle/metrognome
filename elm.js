@@ -5293,7 +5293,6 @@ var $author$project$Main$gnomeView = F2(
 				]));
 	});
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
-var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$Attributes$max = $elm$html$Html$Attributes$stringProperty('max');
 var $elm$html$Html$Attributes$min = $elm$html$Html$Attributes$stringProperty('min');
@@ -5420,35 +5419,65 @@ var $author$project$Main$view = function (model) {
 						_List_fromArray(
 							[
 								A2(
-								$elm$html$Html$h2,
+								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('beats-per-measure')
+										$elm$html$Html$Attributes$class('col1')
 									]),
 								_List_fromArray(
 									[
-										$elm$html$Html$text(
-										$elm$core$String$fromInt(model.J))
+										A2(
+										$elm$html$Html$span,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('beats-number')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text(
+												$elm$core$String$fromInt(model.J))
+											]))
 									])),
 								A2(
-								$elm$html$Html$h2,
-								_List_Nil,
+								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$text('Beats Per Minute')
-									])),
-								A2(
-								$elm$html$Html$input,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$type_('number'),
-										$elm$html$Html$Attributes$value(model.K),
-										$elm$html$Html$Attributes$min('0'),
-										$elm$html$Html$Attributes$max('999'),
-										$elm$html$Html$Attributes$step('1'),
-										$elm$html$Html$Events$onInput($author$project$Main$SetBPMinute)
+										$elm$html$Html$Attributes$class('col2')
 									]),
-								_List_Nil)
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$span,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('beats-label')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('Beats Per Minute')
+											]))
+									])),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('col3')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$input,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$type_('number'),
+												$elm$html$Html$Attributes$value(model.K),
+												$elm$html$Html$Attributes$min('0'),
+												$elm$html$Html$Attributes$max('999'),
+												$elm$html$Html$Attributes$step('1'),
+												$elm$html$Html$Events$onInput($author$project$Main$SetBPMinute)
+											]),
+										_List_Nil)
+									]))
 							])),
 						A2(
 						$elm$html$Html$div,
@@ -5460,29 +5489,52 @@ var $author$project$Main$view = function (model) {
 						_List_fromArray(
 							[
 								A2(
-								$elm$html$Html$h2,
+								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('beats-per-measure')
+										$elm$html$Html$Attributes$class('col1')
 									]),
 								_List_fromArray(
 									[
-										$elm$html$Html$text(
-										$elm$core$String$fromInt(model.l))
+										A2(
+										$elm$html$Html$span,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('beats-number')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text(
+												$elm$core$String$fromInt(model.l))
+											]))
 									])),
 								A2(
-								$elm$html$Html$h2,
-								_List_Nil,
+								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$text('Beats Per Measure')
+										$elm$html$Html$Attributes$class('col2')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$span,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('beats-label')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('Beats Per Measure')
+											]))
 									])),
 								A2(
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('col'),
-										A2($elm$html$Html$Attributes$style, 'gap', '0em')
+										$elm$html$Html$Attributes$class('col3'),
+										A2($elm$html$Html$Attributes$style, 'gap', '0em'),
+										A2($elm$html$Html$Attributes$style, 'align-items', 'center')
 									]),
 								_List_fromArray(
 									[
