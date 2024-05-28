@@ -1,0 +1,143 @@
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 1em;
+  box-sizing: border-box;
+  background: #000000;
+  color: #dddddd;
+  font-family: monospaced, sans-serif, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+input {
+  margin: 0.2em;
+  font-size: 3em;
+  width: 2.5em;
+  text-align: center;
+}
+
+img {
+  height: 100%;
+  object-fit: contain;
+}
+
+
+button {
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  background-color: #000000;
+  color: #dddddd;
+  border: 0.15em solid #dddddd;
+  box-shadow: 0.2em 0.2em 0 #777777;
+  border-radius: 0.5em;
+  font-size: 1.4em;
+}
+
+button:hover {
+  background-color: #dddddd;
+  color: #000000;
+  border-color: #222222;
+}
+
+button:active {
+  background-color: #dddddd;
+  color: #000000;
+  box-shadow: 0 0 0 #00000000;
+  transform: translateX(0.2em) translateY(0.2em)
+}
+
+.border {
+  background-color: #222222;
+  padding: 0.6em 0.9em 0.6em 0.6em;
+  border: 0.4em outset #777777;
+  border-radius: 0.2em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-evenly;
+  gap: 1em;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  gap: 1em;
+}
+
+.wide {
+  width: 100%;
+}
+
+.tall {
+  height: 100%;
+}
+
+.align-start {
+  align-items: start;
+}
+
+.player {
+ align-items: stretch;
+ width: 25%;
+ justify-content: start;
+}
+
+.arena {
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1em;
+}
+
+.gnomes {
+  height: 50vh;
+  width: 100%;
+  background-color: #111111;
+  border: solid #eeeeee 0.1em;
+}
+
+.gnome {
+  height: 25vh;
+  flex-grow: 1;
+  background-color: gray;
+  position: relative;
+  animation-name: frames;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+}
+
+.gnome span {
+  font-size: 3em;
+  color: #111111;
+}
+
+@keyframes frames {
+  0%   {background-color:yellow; left:0px; top:25vh;}
+  50%  {background-color:gray; left:0px; top:0em;}
+  100% {background-color:gray; left:0px; top:25vh;}
+}
+
+@keyframes frames-alternate {
+  0%   {background-color:yellow; left:0px; top:25vh;}
+  50%  {background-color:gray; left:0px; top:0em;}
+  100% {background-color:gray; left:0px; top:25vh;}
+}
