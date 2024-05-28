@@ -5390,7 +5390,7 @@ var $author$project$Main$view = function (model) {
 						_List_Nil,
 						_List_fromArray(
 							[
-								$elm$html$Html$text('Metrognome')
+								$elm$html$Html$text('Visual Metronome')
 							])),
 						A2(
 						$elm$html$Html$div,

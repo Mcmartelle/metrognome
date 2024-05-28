@@ -118,7 +118,7 @@ view : Model -> Html Msg
 view model =
     div [ class "wide", class "tall", class "col" ]
         [ div [ class "arena", class "border" ]
-            [ h1 [] [ text "Metrognome" ]
+            [ h1 [] [ text "Visual Metronome" ]
             , div [ class "gnomes", class "row" ]
                 (List.indexedMap gnomeView (List.repeat model.beatsPerMeasure model))
             , div [ class "row", style "align-items" "center" ]
