@@ -24,7 +24,8 @@ main =
 
 
 type alias Model =
-    { beatsPerMinute : Int
+    { beatsPerMinuteString : String
+    , beatsPerMinute : Int
     , beatsPerMeasure : Int
     , msPerMeasure : Float
     , msOffset : Float
@@ -34,7 +35,8 @@ type alias Model =
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( { beatsPerMinute = 120
+    ( { beatsPerMinuteString = "120"
+      , beatsPerMinute = 120
       , beatsPerMeasure = 4
       , msPerMeasure = 2000
       , msOffset = 500
@@ -60,7 +62,7 @@ update msg model =
         SetBPMinute bpm ->
             let
                 newBpm =
-                    clamp 0 999 <| Maybe.withDefault 120 <| String.toInt bpm
+                    clamp 0 999 <| Maybe.withDefault 0 <| String.toInt bpm
 
                 newOffset =
                     calculateOffset newBpm
@@ -68,7 +70,7 @@ update msg model =
                 newMsPerMeasure =
                     calculateMsPerMeasure model.beatsPerMeasure newOffset
             in
-            ( { model | keyframesToggle = not model.keyframesToggle, beatsPerMinute = newBpm, msOffset = newOffset, msPerMeasure = newMsPerMeasure }, Cmd.none )
+            ( { model | keyframesToggle = not model.keyframesToggle, beatsPerMinuteString = bpm, beatsPerMinute = newBpm, msOffset = newOffset, msPerMeasure = newMsPerMeasure }, Cmd.none )
 
         IncrementBPMeasure ->
             let
@@ -102,6 +104,7 @@ calculateMsPerMeasure beatsPerMeasure offset =
 
 
 
+
 -- SUBSCRIPTIONS
 
 
@@ -117,17 +120,19 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div [ class "wide", class "tall", class "col" ]
-        [ div [ class "arena", class "border" ]
+        [ div [ class "arena" ]
             [ h1 [] [ text "Visual Metronome" ]
             , div [ class "gnomes", class "row" ]
                 (List.indexedMap gnomeView (List.repeat model.beatsPerMeasure model))
             , div [ class "row", style "align-items" "center" ]
-                [ input [ type_ "number", value (String.fromInt model.beatsPerMinute), onInput SetBPMinute ] []
+                [ h2 [class "beats-per-measure"] [ text (String.fromInt model.beatsPerMinute) ]
                 , h2 [] [ text "Beats Per Minute" ]
+                , input [ type_ "number", Html.Attributes.value model.beatsPerMinuteString, Html.Attributes.min "0", Html.Attributes.max "999", Html.Attributes.step "1", onInput SetBPMinute ] []
                 ]
             , div [ class "row", style "align-items" "center" ]
-                [ h2 [] [ text (String.fromInt model.beatsPerMeasure ++ " Beats Per Measure") ]
-                , div [ class "col" ]
+                [ h2 [class "beats-per-measure"] [ text (String.fromInt model.beatsPerMeasure) ]
+                , h2 [] [ text "Beats Per Measure" ]
+                , div [ class "col", style "gap" "0em" ]
                     [ button [ onClick IncrementBPMeasure ] [ text "+1" ]
                     , button [ onClick DecrementBPMeasure ] [ text "-1" ]
                     ]

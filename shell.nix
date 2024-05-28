@@ -11,6 +11,7 @@ pkgs.mkShell {
     pkgs.elmPackages.elm-review
     pkgs.elmPackages.elm-test
     pkgs.elmPackages.elm-json
+    pkgs.nodePackages.uglify-js
   ];
 }
 

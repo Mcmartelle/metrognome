@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 1em;
   box-sizing: border-box;
-  background: #000000;
+  background-color: #222222;
   color: #dddddd;
   font-family: monospaced, sans-serif, serif;
   display: flex;
@@ -22,7 +22,7 @@ body {
 input {
   margin: 0.2em;
   font-size: 3em;
-  width: 2.5em;
+  width: 3em;
   text-align: center;
 }
 
@@ -37,6 +37,7 @@ button {
   margin: 0.5em;
   background-color: #000000;
   color: #dddddd;
+  font-weight: bold;
   border: 0.15em solid #dddddd;
   box-shadow: 0.2em 0.2em 0 #777777;
   border-radius: 0.5em;
@@ -56,9 +57,24 @@ button:active {
   transform: translateX(0.2em) translateY(0.2em)
 }
 
+h1 {
+  font-size: 2.5em;
+  margin: 0.2em;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0em;
+}
+
+h2.beats-per-measure {
+  font-size: 4em;
+  color: #fefefe;
+}
+
 .border {
   background-color: #222222;
-  padding: 0.6em 0.9em 0.6em 0.6em;
+  padding: 0.6em;
   border: 0.4em outset #777777;
   border-radius: 0.2em;
 }
@@ -107,14 +123,14 @@ button:active {
 }
 
 .gnomes {
-  height: 50vh;
+  flex-grow: 1;
   width: 100%;
   background-color: #111111;
   border: solid #eeeeee 0.1em;
 }
 
 .gnome {
-  height: 25vh;
+  height: 50%;
   flex-grow: 1;
   background-color: gray;
   position: relative;
@@ -130,14 +146,18 @@ button:active {
   color: #111111;
 }
 
+.error {
+  color: #F92672;
+}
+
 @keyframes frames {
-  0%   {background-color:yellow; left:0px; top:25vh;}
+  0%   {background-color:yellow; left:0px; top:50%;}
   50%  {background-color:gray; left:0px; top:0em;}
-  100% {background-color:gray; left:0px; top:25vh;}
+  100% {background-color:gray; left:0px; top:50%;}
 }
 
 @keyframes frames-alternate {
-  0%   {background-color:yellow; left:0px; top:25vh;}
+  0%   {background-color:yellow; left:0px; top:50%;}
   50%  {background-color:gray; left:0px; top:0em;}
-  100% {background-color:gray; left:0px; top:25vh;}
+  100% {background-color:gray; left:0px; top:50%;}
 }
