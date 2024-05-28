@@ -30,6 +30,7 @@ type alias Model =
     , msPerMeasure : Float
     , msOffset : Float
     , keyframesToggle : Bool
+    , fontSize : Int
     }
 
 
@@ -41,6 +42,7 @@ init _ =
       , msPerMeasure = 2000
       , msOffset = 500
       , keyframesToggle = True
+      , fontSize = 8
       }
     , Cmd.none
     )
@@ -75,22 +77,29 @@ update msg model =
         IncrementBPMeasure ->
             let
                 newBeatsPerMeasure =
-                    min 20 <| model.beatsPerMeasure + 1
+                    min 16 <| model.beatsPerMeasure + 1
 
                 newMsPerMeasure =
                     calculateMsPerMeasure newBeatsPerMeasure model.msOffset
+
+                newFontSize =
+                    clamp 2 8 <| fontSizeNumerator // newBeatsPerMeasure
+
             in
-            ( { model | keyframesToggle = not model.keyframesToggle, beatsPerMeasure = newBeatsPerMeasure, msPerMeasure = newMsPerMeasure }, Cmd.none )
+            ( { model | keyframesToggle = not model.keyframesToggle, beatsPerMeasure = newBeatsPerMeasure, msPerMeasure = newMsPerMeasure, fontSize = newFontSize }, Cmd.none )
 
         DecrementBPMeasure ->
             let
                 newBeatsPerMeasure =
-                    max 0 <| model.beatsPerMeasure - 1
+                    max 1 <| model.beatsPerMeasure - 1
 
                 newMsPerMeasure =
                     calculateMsPerMeasure newBeatsPerMeasure model.msOffset
+
+                newFontSize =
+                    clamp 2 8 <| fontSizeNumerator // newBeatsPerMeasure
             in
-            ( { model | keyframesToggle = not model.keyframesToggle, beatsPerMeasure = newBeatsPerMeasure, msPerMeasure = newMsPerMeasure }, Cmd.none )
+            ( { model | keyframesToggle = not model.keyframesToggle, beatsPerMeasure = newBeatsPerMeasure, msPerMeasure = newMsPerMeasure, fontSize = newFontSize }, Cmd.none )
 
 
 calculateOffset : Int -> Float
@@ -102,7 +111,8 @@ calculateMsPerMeasure : Int -> Float -> Float
 calculateMsPerMeasure beatsPerMeasure offset =
     offset * toFloat beatsPerMeasure
 
-
+fontSizeNumerator : Int
+fontSizeNumerator = 32
 
 
 -- SUBSCRIPTIONS
@@ -155,4 +165,4 @@ gnomeView idx model =
         , style "animation-duration" (String.fromFloat model.msPerMeasure ++ "ms")
         , style "animation-delay" (String.fromFloat (toFloat idx * model.msOffset) ++ "ms")
         ]
-        [ span [] [ text (String.fromInt (idx + 1)) ] ]
+        [ span [style "font-size" (String.fromInt model.fontSize ++ "em")] [ text (String.fromInt (idx + 1)) ] ]
