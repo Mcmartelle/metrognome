@@ -84,7 +84,6 @@ update msg model =
 
                 newFontSize =
                     clamp 2 8 <| fontSizeNumerator // newBeatsPerMeasure
-
             in
             ( { model | keyframesToggle = not model.keyframesToggle, beatsPerMeasure = newBeatsPerMeasure, msPerMeasure = newMsPerMeasure, fontSize = newFontSize }, Cmd.none )
 
@@ -111,8 +110,11 @@ calculateMsPerMeasure : Int -> Float -> Float
 calculateMsPerMeasure beatsPerMeasure offset =
     offset * toFloat beatsPerMeasure
 
+
 fontSizeNumerator : Int
-fontSizeNumerator = 32
+fontSizeNumerator =
+    32
+
 
 
 -- SUBSCRIPTIONS
@@ -135,18 +137,18 @@ view model =
             , div [ class "gnomes", class "row" ]
                 (List.indexedMap gnomeView (List.repeat model.beatsPerMeasure model))
             , div [ class "row", style "align-items" "center" ]
-                [ div [class "col1"]
-                [ span [class "beats-number"] [ text (String.fromInt model.beatsPerMinute) ]]
-                , div [class "col2"] 
-                [ span [class "beats-label"] [ text "Beats Per Minute" ]]
-                , div [class "col3"] 
-                [ input [ type_ "number", Html.Attributes.value model.beatsPerMinuteString, Html.Attributes.min "0", Html.Attributes.max "999", Html.Attributes.step "1", onInput SetBPMinute ] []]
+                [ div [ class "col1" ]
+                    [ span [ class "beats-number" ] [ text (String.fromInt model.beatsPerMinute) ] ]
+                , div [ class "col2" ]
+                    [ span [ class "beats-label" ] [ text "Beats Per Minute" ] ]
+                , div [ class "col3" ]
+                    [ input [ type_ "number", Html.Attributes.value model.beatsPerMinuteString, Html.Attributes.min "0", Html.Attributes.max "999", Html.Attributes.step "1", onInput SetBPMinute ] [] ]
                 ]
             , div [ class "row", style "align-items" "center" ]
-                [ div [class "col1"]
-                [ span [class "beats-number"] [ text (String.fromInt model.beatsPerMeasure) ]]
-                , div [class "col2"]
-                [ span [class "beats-label"] [ text "Beats Per Measure" ]]
+                [ div [ class "col1" ]
+                    [ span [ class "beats-number" ] [ text (String.fromInt model.beatsPerMeasure) ] ]
+                , div [ class "col2" ]
+                    [ span [ class "beats-label" ] [ text "Beats Per Measure" ] ]
                 , div [ class "col", class "col3", style "gap" "0em", style "align-items" "center" ]
                     [ button [ onClick IncrementBPMeasure ] [ text "+1" ]
                     , button [ onClick DecrementBPMeasure ] [ text "-1" ]
@@ -170,4 +172,4 @@ gnomeView idx model =
         , style "animation-duration" (String.fromFloat model.msPerMeasure ++ "ms")
         , style "animation-delay" (String.fromFloat (toFloat idx * model.msOffset) ++ "ms")
         ]
-        [ span [style "font-size" (String.fromInt model.fontSize ++ "em")] [ text (String.fromInt (idx + 1)) ] ]
+        [ span [ style "font-size" (String.fromInt model.fontSize ++ "em") ] [ text (String.fromInt (idx + 1)) ] ]
