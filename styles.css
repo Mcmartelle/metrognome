@@ -103,13 +103,13 @@ span.beats-label {
 }
 
 .col1 {
-  width: 9em;
-}
-.col2 {
   width: 11em;
 }
+.col2 {
+  width: 12em;
+}
 .col3 {
-  width: 10.4em;
+  width: 13em;
 }
 
 .wide {
